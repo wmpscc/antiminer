@@ -24,19 +24,20 @@ def getSessionScope(pid):
 
 
 def check(p):
-    if 'nbminer' in p.exe():
+    cmdline = ''.join(p.cmdline())
+    if 'nbminer' in p.exe():  # 开源挖矿程序
         return 1
     if p.cwd().startswith('/tmp/.dev'):  # 病毒伪装目录
         return 1
-    if 'ethash' in p.cmdline():
+    if 'ethash' in cmdline:  # 以太坊
         return 1
-    if 'stratum' in p.cmdline():  # 以太坊矿池协议
+    if 'stratum' in cmdline:  # 以太坊矿池协议
         return 1
-    if 'wallet' in p.cmdline():
+    if 'wallet' in cmdline:  # 钱包地址
         return 1
-    if 'ssh' in p.cmdline() and '-f' in p.cmdline() and '-L' in p.cmdline() and '-N' in p.cmdline():  # 疑似内网端口映射
+    if 'ssh' in cmdline and '-f' in cmdline and '-L' in cmdline and '-N' in cmdline:  # 疑似内网端口映射
         return 1
-    if '/tmp' in p.startswith():  # 问题文件常见目录
+    if p.cwd().startswith('/tmp'):  # 问题文件常见目录
         return 2
     return 0
 
