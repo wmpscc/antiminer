@@ -18,6 +18,8 @@ def check(p):
 ```
 
 ## 运行
+需要 **python 3.5** 以上版本
+
 ```shell
 sudo python 110.py
 ```
