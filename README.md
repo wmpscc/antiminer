@@ -22,6 +22,6 @@ def check(p):
 sudo python 110.py
 ```
 
-## 参考工程
+## 参考
 - [https://github.com/bojone/antiminer](https://github.com/bojone/antiminer)
 
