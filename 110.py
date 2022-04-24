@@ -67,6 +67,7 @@ def scan():
 
 
 if __name__ == '__main__':
+    print('running~')
     while True:
         scan()
         # 每5秒检测一次
