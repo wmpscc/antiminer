@@ -63,9 +63,7 @@ def scan():
         try:
             do(p)
         except:
-            pass
-
-    logging.info('scan has completed')
+            logging.error('Exception in program, please check.')
 
 
 if __name__ == '__main__':
