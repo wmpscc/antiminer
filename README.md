@@ -27,6 +27,8 @@ sudo python 110py2.py # python2.x
 sudo python 110py3.py # python3.x
 ```
 
+**注意：python2运行py3无效，python3无法运行py2！！！一定要对应版本运行**
+
 ## 参考
 - [https://github.com/bojone/antiminer](https://github.com/bojone/antiminer)
 
