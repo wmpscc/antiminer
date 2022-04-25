@@ -23,7 +23,8 @@ def check(p):
 看脚本后缀，使用对应python版本运行
 
 ```shell
-sudo python 110py3.py
+sudo python 110py2.py # python2.x
+sudo python 110py3.py # python3.x
 ```
 
 ## 参考
