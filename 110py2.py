@@ -72,8 +72,8 @@ def scan():
 
 
 if __name__ == '__main__':
-    print('running~')
     while True:
         scan()
         # 每5秒检测一次
+        print('running~' + time.strftime('%Y-%m-%d %H:%M:%S'))
         time.sleep(5)
