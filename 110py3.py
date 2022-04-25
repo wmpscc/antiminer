@@ -21,7 +21,8 @@ def getSessionScope(pid):
     for i in cmd.split('\n'):
         if i.strip().startswith('CGroup'):
             session = i.split('/')[-1]
-            return session.strip()
+            user_slice = i.split('/')[-2]
+            return user_slice.strip(), session.strip()
 
 
 def check(p):
@@ -47,12 +48,15 @@ def do(p):
     code = check(p)
     if code == 0:
         return None
-    sess = getSessionScope(p.pid)
+    user, sess = getSessionScope(p.pid)
     if code == 2:
-        logging.warning('Suspicious file: session_scope: %s, cwd: %s, exe: %s' % (sess, p.cwd(), p.exe()))
+        logging.warning('Suspicious file: user slice: %s, session_scope: %s, cwd: %s, exe: %s, PID: %s' % (
+            user, sess, p.cwd(), p.exe(), p.pid))
     if code == 1:
         if sess != '':
-            logging.error('Malicious file: session_scope: %s, cwd: %s, exe: %s' % (sess, p.cwd(), p.exe()))
+            logging.error(
+                'Malicious file: user slice: %s, session_scope: %s, cwd: %s, exe: %s, PID: %s' % (
+                    user, sess, p.cwd(), p.exe(), p.pid))
             os.system('sudo systemctl kill -s SIGKILL ' + sess)
         else:
             p.kill()
@@ -62,8 +66,9 @@ def scan():
     for p in psutil.process_iter():
         try:
             do(p)
-        except:
-            logging.error('Exception in program, please check.')
+        except Exception as e:
+            logging.error(
+                'Exception in program, please check.  cwd: %s, exe: %s, except: %s' % (p.cwd(), p.exe(), str(e)))
 
 
 if __name__ == '__main__':
