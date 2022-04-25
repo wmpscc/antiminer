@@ -18,10 +18,12 @@ def check(p):
 ```
 
 ## 运行
-需要 **python 3.5** 以上版本
+目录下`install-*.sh`脚本安装python的`psutil`包。
+
+看脚本后缀，使用对应python版本运行
 
 ```shell
-sudo python 110.py
+sudo python 110py3.py
 ```
 
 ## 参考

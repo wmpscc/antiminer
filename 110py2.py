@@ -1,5 +1,6 @@
+# -*- coding: UTF-8 -*-
 import os
-import subprocess
+import commands
 import psutil
 import logging
 import time
@@ -14,7 +15,7 @@ logging.basicConfig(
 
 
 def getSessionScope(pid):
-    status, cmd = subprocess.getstatusoutput('systemctl status ' + str(pid))
+    status, cmd = commands.getstatusoutput('systemctl status ' + str(pid))
     if status != 0:
         return ''
     for i in cmd.split('\n'):
