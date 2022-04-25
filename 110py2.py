@@ -68,12 +68,11 @@ def scan():
             do(p)
         except Exception as e:
             logging.error(
-                'Exception in program, please check.  cwd: %s, exe: %s, except: %s' % (p.cwd(), p.exe(), str(e)))
+                'Exception in program, please check. except: %s' % (str(e)))
 
 
 if __name__ == '__main__':
     while True:
         scan()
-        # 每5秒检测一次
         print('running~' + time.strftime('%Y-%m-%d %H:%M:%S'))
-        time.sleep(5)
+        time.sleep(5)  # 每5秒检测一次
